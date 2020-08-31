@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ContactPageController!{% endblock %}
+
+{% block body %}
+    {{ form_start(contact_form) }}
+        {{ form_row(contact_form.email) }}
+        {{ form_row(contact_form.message) }}
+        <input type="submit" value="Envoyer" />
+    {{ form_end(contact_form) }}
+{% endblock %}

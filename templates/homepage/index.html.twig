@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomepageController!{% endblock %}
+
+{% block body %}
+    {% for message in app.flashes('success') %}
+    <div class="success">
+        {{ message }}
+    </div>
+    {% endfor %}
+
+<div class="example-wrapper">
+    <h1>Hello world ! ✅</h1>
+</div>
+{% endblock %}
