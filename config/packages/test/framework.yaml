@@ -2,3 +2,8 @@ framework:
     test: true
     session:
         storage_id: session.storage.mock_file
+
+
+services:
+    Symfony\Contracts\HttpClient\HttpClientInterface:
+        public: true
