@@ -13,8 +13,6 @@ class ContactPageTest extends WebTestCase
 
         static::assertResponseIsSuccessful();
 
-//        dump($crawler->html());
-
         static::assertSelectorExists('input[name="contact[email]"]');
         static::assertSelectorExists('textarea[name="contact[message]"]');
 
@@ -23,6 +21,7 @@ class ContactPageTest extends WebTestCase
             'contact[email]' => 'mon@ema.il',
             'contact[message]' => 'Hello',
         ]);
+
         $client->followRedirect();
 
         static::assertSelectorTextContains('div.success', 'Merci d\'avoir contacté l\'admin');
@@ -30,6 +29,20 @@ class ContactPageTest extends WebTestCase
 
     public function testVisitorShouldSubmitValidContactInformations()
     {
-        // ...
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/contact');
+
+        static::assertResponseIsSuccessful();
+
+        static::assertSelectorExists('input[name="contact[email]"]');
+        static::assertSelectorExists('textarea[name="contact[message]"]');
+
+        $contactForm = $crawler->selectButton('Envoyer')->form();
+        $client->submit($contactForm, [
+            'contact[email]' => 'toto',
+        ]);
+
+        static::assertSelectorTextContains('body', 'Merci de saisir un email valide');
+        static::assertSelectorTextContains('body', 'Merci de saisir un message de moins de 120 char');
     }
 }

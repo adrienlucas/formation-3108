@@ -4,13 +4,24 @@ declare(strict_types=1);
 
 namespace App\Model;
 
+use Symfony\Component\Validator\Constraints as Assert;
 
 class Contact
 {
-    /** @var string */
+    /**
+     * @var string
+     * @Assert\Email(
+     *     message = "Merci de saisir un email valide"
+     * )
+     */
     private $email;
 
-    /** @var string */
+    /**
+     * @var string
+     * @Assert\NotNull(
+     *      message = "Merci de saisir un message de moins de 120 char"
+     * )
+     */
     private $message;
 
     /**
