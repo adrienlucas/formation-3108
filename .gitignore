@@ -15,5 +15,12 @@
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 
-./.idea
-.composer.lock
+./.idea/*
+/composer.lock
+/symfony.lock
+/.idea/codeStyles/codeStyleConfig.xml
+/.idea/formation-3108.iml
+/.idea/modules.xml
+/.idea/php.xml
+/.idea/vcs.xml
+/.idea/workspace.xml
