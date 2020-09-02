@@ -41,20 +41,28 @@ class UserCreationTest extends WebTestCase
 
     public function testNonAdminUsersCanNotCreateAdmin()
     {
-        $client = self::createClient(/* @todo auth with ROLE_USER */);
-        $client->request('GET', '/users');
+        $client = self::createClient([], [
+            'PHP_AUTH_USER' => 'adrien',
+            'PHP_AUTH_PW'   => '4dr13n',
+        ]);
+
+        $crawler = $client->request('GET', '/users');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorExists('input[name="user[username]"]');
         $this->assertSelectorExists('input[name="user[password]"]');
-        $this->assertSelectorNotExists('input[name="user[is_admin]"]');
+        $this->assertSelectorNotExists('input[name="user[admin]"]');
 
         $client->request('POST', '/users', [
-            'user[username]' => 'toto',
-            'user[password]' => 'toto',
-            'user[is_admin]' => true
+            'user' => [
+                'username' => 'toto',
+                'password' => 'toto',
+                'admin' => true,
+                '_token' => $crawler->filter('input#user__token')->attr('value')
+            ]
         ]);
 
-        $this->assertSame(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorTextContains('form', 'This form should not contain extra fields');
     }
 }

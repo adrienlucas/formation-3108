@@ -27,9 +27,4 @@ class ContactPageTest extends WebTestCase
 
         static::assertSelectorTextContains('div.success', 'Merci d\'avoir contacté l\'admin');
     }
-
-    public function testVisitorShouldSubmitValidContactInformations()
-    {
-        // ...
-    }
 }
