@@ -24,10 +24,6 @@ class ContactPageTest extends WebTestCase
             'contact[message]' => 'Hello',
         ]);
 
-        /** @var LoggerDataCollector $collector */
-//        $collector = $client->getProfile()->getCollector('logger');
-//        static::assertSame('Un nouveau message est arrivé.', $collector->getLogs()['info'][0]);
-
         $client->followRedirect();
 
         static::assertSelectorTextContains('div.success', 'Merci d\'avoir contacté l\'admin');

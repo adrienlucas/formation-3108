@@ -13,6 +13,11 @@ class Contact
     /** @var string */
     private $message;
 
+    public function __toString(): string
+    {
+        return $this->email;
+    }
+
     /**
      * @return string
      */
