@@ -1,3 +1,11 @@
+# Ajout des contact à la base utilisateur
+
+Chaque contact créer par le formulaire doit se transformer en utilisateur.
+
+ - Il y a plusieurs source de nouveau contact
+ - Il y a une masse importante de nouveaux contacts
+
+
 # Formulaire de contact
 
 ## Description
