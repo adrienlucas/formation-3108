@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Tests;
 
-
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -74,7 +73,7 @@ class UserCreationTest extends WebTestCase
 
         $this->loadUserFixture('toto', 'john', false);
 
-        $client->request('GET', '/user/toto');
+        $client->request('GET', '/users/edit/toto');
 
         $this->assertSelectorExists('input[name="user[username]"]');
         $this->assertSelectorExists('input[name="user[password]"]');
@@ -90,7 +89,7 @@ class UserCreationTest extends WebTestCase
 
         $this->loadUserFixture('toto', 'john', true);
 
-        $client->request('GET', '/user/toto');
+        $client->request('GET', '/users/edit/toto');
 
         $this->assertResponseStatusCodeSame(Response::HTTP_FORBIDDEN);
     }
@@ -103,7 +102,7 @@ class UserCreationTest extends WebTestCase
         ]);
 
         $this->loadUserFixture('toto', 'fabien', false);
-        $client->request('GET', '/user/toto');
+        $client->request('GET', '/users/edit/toto');
 
         $this->assertResponseStatusCodeSame(Response::HTTP_FORBIDDEN);
     }

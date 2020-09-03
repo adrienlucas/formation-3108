@@ -31,6 +31,11 @@ class User
      */
     private $admin;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $owner;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -68,6 +73,18 @@ class User
     public function setAdmin(bool $admin): self
     {
         $this->admin = $admin;
+
+        return $this;
+    }
+
+    public function getOwner(): ?string
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?string $owner): self
+    {
+        $this->owner = $owner;
 
         return $this;
     }
